@@ -46,6 +46,27 @@ The entire solution was deployed on **Amazon EC2** instances and follows product
 
 ---
 
+# 🏗️ Architecture
+
+The monitoring stack follows a centralized architecture where one EC2 instance acts as the monitoring server while two EC2 instances are monitored.
+
+### Monitor Server
+- Prometheus
+- Grafana
+- Loki
+- Alertmanager
+
+### Server-1
+- Node Exporter
+- Grafana Alloy
+
+### Server-2
+- Node Exporter
+- Grafana Alloy
+
+The architecture diagram below illustrates the complete monitoring, logging, and alerting workflow.
+
+![AWS Monitoring Stack Architecture](architecture/architecture-diagram.png)
 # ☁️ AWS Infrastructure
 
 | Server | Purpose |

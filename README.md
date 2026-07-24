@@ -67,13 +67,6 @@ The monitoring stack follows a centralized architecture where one EC2 instance a
 The architecture diagram below illustrates the complete monitoring, logging, and alerting workflow.
 
 ![AWS Monitoring Stack Architecture](architecture/monitoring_architecture_alloy.png)
-# ☁️ AWS Infrastructure
-
-| Server | Purpose |
-|---------|----------|
-| Monitor Server | Prometheus, Grafana, Loki, Alertmanager |
-| Server-1 | Node Exporter + Grafana Alloy |
-| Server-2 | Node Exporter + Grafana Alloy |
 
 ---
 
@@ -138,5 +131,40 @@ Alertmanager
       ▼
 Email Notification
 ```
+
+---
+
+# ☁️ AWS Infrastructure
+
+The monitoring stack was deployed on three Amazon EC2 instances within the same Virtual Private Cloud (VPC). One instance acts as the centralized monitoring server, while the remaining two instances are monitored using Node Exporter and Grafana Alloy.
+
+| Server | Components Installed | Purpose |
+|---------|----------------------|---------|
+| **Monitor Server** | Prometheus, Grafana, Loki, Alertmanager | Collects metrics, stores logs, visualizes dashboards, and sends alert notifications |
+| **Server-1** | Node Exporter, Grafana Alloy | Exposes system metrics and forwards system logs |
+| **Server-2** | Node Exporter, Grafana Alloy | Exposes system metrics and forwards system logs |
+
+### Communication Between Components
+
+| Source | Destination | Purpose |
+|----------|-------------|---------|
+| Node Exporter | Prometheus | Infrastructure Metrics |
+| Grafana Alloy | Loki | System Logs |
+| Grafana | Prometheus | Metrics Visualization |
+| Grafana | Loki | Log Exploration |
+| Prometheus | Alertmanager | Alert Routing |
+| Alertmanager | Gmail SMTP | Email Notifications |
+
+---
+
+## Network Ports Used
+
+| Port | Service |
+|------|----------|
+| **3000** | Grafana |
+| **3100** | Loki |
+| **9090** | Prometheus |
+| **9093** | Alertmanager |
+| **9100** | Node Exporter |
 
 ---

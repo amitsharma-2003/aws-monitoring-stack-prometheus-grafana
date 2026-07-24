@@ -66,7 +66,7 @@ The monitoring stack follows a centralized architecture where one EC2 instance a
 
 The architecture diagram below illustrates the complete monitoring, logging, and alerting workflow.
 
-![AWS Monitoring Stack Architecture](architecture/architecture-diagram.png)
+![AWS Monitoring Stack Architecture](architecture/monitoring_architecture_alloy.png)
 # ☁️ AWS Infrastructure
 
 | Server | Purpose |
@@ -74,3 +74,69 @@ The architecture diagram below illustrates the complete monitoring, logging, and
 | Monitor Server | Prometheus, Grafana, Loki, Alertmanager |
 | Server-1 | Node Exporter + Grafana Alloy |
 | Server-2 | Node Exporter + Grafana Alloy |
+
+---
+
+# 🔄 Project Workflow
+
+This monitoring stack consists of three major workflows: **Metrics Collection**, **Log Collection**, and **Alerting**.
+
+## 📊 Metrics Collection Workflow
+
+Infrastructure metrics such as CPU, Memory, Disk, Network, and Filesystem usage are collected from each Linux server using **Node Exporter**. Prometheus periodically scrapes these metrics and stores them in its time-series database. Grafana then queries Prometheus to visualize the collected metrics through interactive dashboards.
+
+```text
+Server-1              Server-2
+   │                      │
+   ▼                      ▼
+Node Exporter        Node Exporter
+        │             │
+        └──────┬──────┘
+               ▼
+          Prometheus
+               │
+               ▼
+            Grafana
+```
+
+---
+
+## 📜 Log Collection Workflow
+
+System logs generated on each Linux server are collected by **Grafana Alloy**. Alloy continuously watches log files under `/var/log`, forwards them to Loki, and Grafana Explore is used to search and visualize the centralized logs.
+
+```text
+Linux Log Files
+        │
+        ▼
+ Grafana Alloy
+        │
+        ▼
+      Loki
+        │
+        ▼
+ Grafana Explore
+```
+
+---
+
+## 🚨 Alerting Workflow
+
+Prometheus continuously evaluates alert rules. When a rule condition is satisfied (for example, high CPU usage), the alert is forwarded to Alertmanager, which sends an email notification to the configured recipient.
+
+```text
+Node Exporter
+      │
+      ▼
+ Prometheus
+      │
+ Alert Rules
+      │
+      ▼
+Alertmanager
+      │
+      ▼
+Email Notification
+```
+
+---

@@ -168,3 +168,72 @@ The monitoring stack was deployed on three Amazon EC2 instances within the same 
 | **9100** | Node Exporter |
 
 ---
+
+# 📸 Project Screenshots
+
+Project screenshots are available in the **screenshots/** directory.
+
+The screenshots demonstrate:
+
+- Architecture Diagram
+- Prometheus Targets
+- Grafana Node Exporter Dashboard
+- Grafana Explore (Server-1 Logs)
+- Grafana Explore (Server-2 Logs)
+- Alertmanager UI
+- Prometheus Alerts
+- Email Notification
+
+---                                                                                                                                                                                                                                                                                                                               
+
+  # 📂 Repository Structure
+
+```
+aws-monitoring-stack-prometheus-grafana/
+│
+├── README.md
+├── architecture/
+│   └── architecture.png
+├── configs/
+│   ├── prometheus/
+│   ├── grafana/
+│   ├── loki/
+│   ├── alloy/
+│   └── alertmanager/
+├── docs/
+│   └── Monitoring-Stack-Documentation.pdf
+├── screenshots/
+│   ├── architecture.png
+│   ├── prometheus-targets.png
+│   ├── grafana-dashboard.png
+│   ├── server1-logs.png
+│   ├── server2-logs.png
+│   ├── alertmanager-ui.png
+│   ├── prometheus-alerts.png
+│   └── email-notification.png
+└── assets/
+```
+  
+  # 👨‍💻 Author
+
+**Amit Sharma**
+
+DevOps Engineer | AWS Certified Solutions Architect – Associate
+
+### Connect with Me
+
+- LinkedIn: https://linkedin.com/in/amitsharma2003/
+- GitHub: https://github.com/amitsharma-2003/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

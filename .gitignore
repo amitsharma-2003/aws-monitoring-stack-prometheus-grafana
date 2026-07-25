@@ -1,0 +1,17 @@
+# Private Keys
+*.pem
+*.key
+
+# Environment Files
+.env
+
+# Logs
+*.log
+
+# Archives
+*.zip
+*.tar.gz
+
+# OS Files
+.DS_Store
+Thumbs.db
